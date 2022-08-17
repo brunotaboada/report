@@ -1,0 +1,37 @@
+<script type="text/javascript">
+  function copy(value) {
+    let copyTextarea = document.createElement("textarea");
+    copyTextarea.style.position = "fixed";
+    copyTextarea.style.opacity = "0";
+    copyTextarea.textContent = document.getElementById(value).text;
+    document.body.appendChild(copyTextarea);
+    copyTextarea.select();
+    document.execCommand("copy");
+    document.body.removeChild(copyTextarea);
+  }
+</script>
+<table border="1">
+  <tr th:each="ele,iter : ${data}">
+    <td th:text="${ele.name}"/>
+    <td>
+      <a th:href="'http://' + ${ele.ip}" th:id="'ip' + ${iter.index}" th:text="${ele.ip}" target="_blank"/>
+    </td>
+    <td>
+      <a href="#" th:id="'user' + ${iter.index}" th:text="${ele.user}"
+         th:onclick="copy([['user' + ${iter.index}]])"/>
+    </td>
+    <td>
+      <a href="#" th:id="'pass' + ${iter.index}" th:text="${ele.password}"
+         th:onclick="copy([['pass' + ${iter.index}]])"/>
+    </td>
+    <td th:text="${ele.ipmiIp}"/>
+    <td>
+      <a href="#" th:id="'ipmiuser' + ${iter.index}" th:text="${ele.ipmiUser}"
+         th:onclick="copy([['ipmiuser' + ${iter.index}]])"/>
+    </td>
+    <td>
+      <a href="#" th:id="'ipmipass' + ${iter.index}" th:text="${ele.ipmiPassword}"
+         th:onclick="copy([['ipmipass' + ${iter.index}]])"/>
+    </td>
+  </tr>
+</table>

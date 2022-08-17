@@ -1,0 +1,14 @@
+<script type="text/javascript">
+  function copy(value) {
+    navigator.clipboard.writeText(value);
+    alert("Copied the text: " + value);
+  }
+</script>
+<table>
+<tr th:each="ele : ${data}">
+  <td th:text="${ele.name}"/>
+  <td>
+    <a href="#" th:text="${ele.desc}" th:onclick="copy([[${ele.desc}]])"/>
+  </td>
+</tr>
+</table>
